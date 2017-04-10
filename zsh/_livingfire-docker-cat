@@ -1,0 +1,25 @@
+#compdef livingfire-docker-cat
+
+_arguments '*:: :->command'
+
+local -a _2nd_arguments
+_2nd_arguments=(
+    "/var/log/apache2/*.log"
+    "/var/log/supervisor/*.log"
+)
+
+if (( CURRENT == 1 )); then
+    local -a docker_container
+    docker_container=($(docker ps --format '{{.Names}}' | sed 's/:/\\:/g'))
+    _describe -t commands "livingfire-docker-cat command" docker_container
+    if [[ ${#docker_container[@]} -eq 0 ]]; then
+        zstyle ':completion:*:warnings' format 'No docker container started'
+        return 1
+    fi
+    return 0
+fi
+
+if (( CURRENT == 2 )); then
+    _describe -t commands "livingfire-docker-cat command" _2nd_arguments
+    return 0
+fi

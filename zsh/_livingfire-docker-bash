@@ -1,0 +1,14 @@
+#compdef livingfire-docker-bash
+
+_arguments '*:: :->command'
+
+if (( CURRENT == 1 )); then
+    local -a docker_container
+    docker_container=($(docker ps --format '{{.Names}}' | sed 's/:/\\:/g'))
+    _describe -t commands "livingfire-docker-bash command" docker_container
+    if [[ ${#docker_container[@]} -eq 0 ]]; then
+        zstyle ':completion:*:warnings' format 'No docker container started'
+        return 1
+    fi
+    return 0
+fi
