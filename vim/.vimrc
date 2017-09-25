@@ -13,7 +13,7 @@ set shiftwidth=4                                            " numbers of spaces 
 set expandtab                                               " replace tab with spaces
 set scrolloff=3                                             " keep 3 lines when scrolling
 
-"set rtp+=/usr/share/powerline/powerline/bindings/vim        " set powerline bindings
+"set rtp+=/usr/share/powerline/bindings/vim                  " set powerline bindings
 "set laststatus=2                                            " powerline related
 "set showtabline=1                                           " powerline related
 "set noshowmode                                              " powerline related
